@@ -1,0 +1,8 @@
+<div class="books-info" *ngFor="let book of books">
+    <h2>{{book.name}}</h2>
+    <img [src]="book.image" alt="{{book.image}}">
+    <p>Author: {{ book.author }}</p>
+    <p>Genre: {{ book.genre.join(',') }}</p>
+    <p>Published: {{ book.publishData }}</p>
+    <p>Price: ${{book.price }}</p>
+</div>
