@@ -1,0 +1,40 @@
+@if (book) {
+  <div class="book-detail-container">
+    
+    <a routerLink="/" class="back-button">← Back to All Books</a>
+
+    <div class="detail-content">
+      
+      <div class="cover-section">
+        <img [src]="book.image" [alt]="book.name">
+      </div>
+
+      <div class="info-section">
+
+        <div class="title-header">
+          <h1>{{ book.name }}</h1>
+              <a [routerLink]="['/books', book.id, 'edit']" class="edit-button" title="Edit Book">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Edit</span>
+              </a>
+         </div>
+
+        <p class="author">by {{ book.author }}</p>
+
+        <div class="genres">
+          @for (g of book.genre; track g) {
+            <span class="genre-tag">{{ g }}</span>
+          }
+        </div>
+        
+        <p class="synopsis">{{book.synopsis}}</p>
+
+        <div class="meta-data">
+          <p><b>Published:</b> {{ book.publishData | date:'longDate' }}</p>
+          <p><b>Price:</b> <span class="price"> ${{ book.price }}</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+}
