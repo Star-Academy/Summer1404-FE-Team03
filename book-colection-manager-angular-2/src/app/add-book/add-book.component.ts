@@ -1,26 +1,28 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { ReactiveFormsModule,FormGroup, FormControl,Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { BookService } from '../services/book.service';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {ReactiveFormsModule, FormGroup, FormControl, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {BookService} from '../services/book.service';
 
 
 @Component({
   selector: 'app-add-book',
-  standalone:true,
-  imports: [CommonModule,ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.scss'
 })
-export class AddBookComponent {
+export class AddBookComponent implements OnInit {
   successMessage: string | null = null;
+  editMode = false;
+  bookId: string | null = null;
 
   addBookForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     author: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
-    image: new FormControl(''), 
+    image: new FormControl(''),
     synopsis: new FormControl('', Validators.required),
-    genre: new FormControl('', Validators.required), 
+    genre: new FormControl('', Validators.required),
     publishData: new FormControl('', Validators.required),
     price: new FormControl(0, [Validators.required, Validators.min(1)])
   });
@@ -28,8 +30,31 @@ export class AddBookComponent {
   constructor(
     private router: Router,
     private bookService: BookService,
+    private route: ActivatedRoute
+  ) {
+  }
 
-  ){}
+  ngOnInit(): void {
+
+    this.bookId = this.route.snapshot.paramMap.get('id');
+    this.editMode = !!this.bookId;
+
+    if (this.editMode && this.bookId) {
+      this.bookService.getBookById(this.bookId).subscribe(book => {
+        if (book) {
+          this.addBookForm.patchValue({
+            name: book.name,
+            author: book.author,
+            image: book.image,
+            synopsis: book.synopsis,
+            genre: book.genre.join(', '),
+            publishData: book.publishData,
+            price: book.price
+          });
+        }
+      });
+    }
+  }
 
 
   selectedFile: File | null = null;
@@ -43,19 +68,20 @@ export class AddBookComponent {
     }
   }
 
-
   onSubmit() {
     if (this.addBookForm.valid) {
-      this.bookService.addBook(this.addBookForm.value);
-      
-      
-      this.successMessage = 'Book added successfully!';
-      
-      this.addBookForm.reset();
+      if (this.editMode && this.bookId) {
 
-      setTimeout(() => {
-        this.successMessage = null;
-      }, 3000);
+        this.bookService.updateBook(this.bookId, this.addBookForm.value);
+        this.successMessage = 'Book updated successfully!';
+      } else {
+
+        this.bookService.addBook(this.addBookForm.value);
+        this.successMessage = 'Book added successfully!';
+      }
+
+      this.addBookForm.reset();
+      setTimeout(() => (this.successMessage = null), 3000);
     }
   }
 }

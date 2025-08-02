@@ -16,14 +16,14 @@ export const routes: Routes = [
     component: AddBookComponent,
   },
   {
-    path: 'edit-book',
-    component: EditBookComponent,
+    path: 'edit-book/:id',
+    component: AddBookComponent,
   },
 
   {
     path: 'books/:id',
     component: BookDetailComponent,
-    data: { animation: 'BookDetailPage' } 
+    data: { animation: 'BookDetailPage' }
   },
 
 ];

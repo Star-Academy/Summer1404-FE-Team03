@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, combineLatest } from 'rxjs';
-import { Book } from '../book.model';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, map, combineLatest} from 'rxjs';
+import {Book} from '../book.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,10 +67,37 @@ export class BookService {
       id: self.crypto.randomUUID(),
       genre: bookData.genre.split(',').map((g: string) => g.trim()),
     };
-    
+
     const updatedBooks = [...currentBooks, newBook];
     this.books$.next(updatedBooks);
     localStorage.setItem(this.storageKey, JSON.stringify(updatedBooks));
   }
+
+  deleteBook(id: string) {
+    const currentBooks = this.books$.getValue();
+    const updatedBooks = currentBooks.filter(book => book.id !== id);
+
+    this.books$.next(updatedBooks);
+    localStorage.setItem(this.storageKey, JSON.stringify(updatedBooks));
+  }
+
+  updateBook(id: string, updatedData: any) {
+    const currentBooks = this.books$.getValue();
+    const updatedBooks = currentBooks.map(book => {
+      if (book.id === id) {
+        return {
+          ...book,
+          ...updatedData,
+          genre: updatedData.genre.split(',').map((g: string) => g.trim()),
+        };
+      }
+      return book;
+    });
+
+    this.books$.next(updatedBooks);
+    localStorage.setItem(this.storageKey, JSON.stringify(updatedBooks));
+  }
+
+
 }
 
