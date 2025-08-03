@@ -1,0 +1,35 @@
+.books-info {
+    grid-area: article;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: 1rem;
+    width: 22.5%;
+    box-shadow: 0 4px 12px rgb(0,0,0,0.2);
+    transition: transform 0.2s ease;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+    img{
+        margin: 1rem auto;
+        border-radius: 1rem;
+    }
+}
+
+:host{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.books-info:hover{
+    transform: scale(1.01);
+}

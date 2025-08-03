@@ -1,0 +1,117 @@
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--color-card);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+  }
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  input, textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input[type="file"] {
+    padding: 0.5rem;
+    &::file-selector-button {
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background-color: #f9fafb;
+      cursor: pointer;
+      margin-right: 1rem;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: #f3f4f6;
+      }
+    }
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.submit-button {
+  padding: 1rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--color-secondary);
+  }
+  
+
+  &:disabled {
+    background-color: var(--color-border);
+    cursor: not-allowed;
+  }
+}
+
+
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+
+.success-message {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #f0fff4;
+  color: #2f855a;
+  border: 1px solid #9ae6b4;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}

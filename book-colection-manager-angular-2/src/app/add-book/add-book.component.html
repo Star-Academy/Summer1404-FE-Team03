@@ -1,0 +1,109 @@
+<div class="form-container">
+  <h2>Add a New Book</h2>
+
+  @if (successMessage) {
+    <div class="success-message">
+      {{ successMessage }}
+    </div>
+  }
+
+  <form class="add-book-form" [formGroup]="addBookForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Book Title</label>
+        <input id="name" type="text" formControlName="name">
+        @if (addBookForm.get('name')?.invalid && addBookForm.get('name')?.touched) {
+          <div class="error-message">
+            @if (addBookForm.get('name')?.hasError('required')) {
+              <span>Title is required.</span>
+            }
+            @if (addBookForm.get('name')?.hasError('minlength')) {
+              <span>Title must be at least 3 characters long.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input id="author" type="text" formControlName="author">
+        @if (addBookForm.get('author')?.invalid && addBookForm.get('author')?.touched) {
+          <div class="error-message">
+            @if (addBookForm.get('author')?.hasError('required')) {
+              <span>Author is required.</span>
+            }
+            @if (addBookForm.get('author')?.hasError('pattern')) {
+              <span>Author name can only contain letters and spaces.</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Upload Cover Image</label>
+      <input id="image" type="file" accept="image/*" (change)="onFileSelected($event)">
+    </div>
+
+    <div class="form-group">
+      <label for="synopsis">Synopsis</label>
+      <textarea id="synopsis" rows="6" formControlName="synopsis"></textarea>
+      @if (addBookForm.get('synopsis')?.invalid && addBookForm.get('synopsis')?.touched) {
+        <div class="error-message">
+          <span>Synopsis is required.</span>
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genres (comma separated)</label>
+      <input id="genre" type="text" formControlName="genre">
+      @if (addBookForm.get('genre')?.invalid && addBookForm.get('genre')?.touched) {
+        <div class="error-message">
+          <span>Genre is required.</span>
+        </div>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="publishData">Published Date</label>
+        <input id="publishData" type="date" formControlName="publishData">
+        @if (addBookForm.get('publishData')?.invalid && addBookForm.get('publishData')?.touched) {
+          <div class="error-message">
+            <span>Published date is required.</span>
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input id="price" type="number" formControlName="price">
+        @if (addBookForm.get('price')?.invalid && addBookForm.get('price')?.touched) {
+          <div class="error-message">
+            @if (addBookForm.get('price')?.hasError('required')) {
+              <span>Price is required.</span>
+            }
+            @if (addBookForm.get('price')?.hasError('min')) {
+              <span>Price must be greater than 0.</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="addBookForm.invalid">
+      @if (editMode) {
+        <span>
+        Edit-Book
+      </span>
+
+      } @else {
+        <span>
+          Add-Book
+        </span>
+      }
+    </button>
+  </form>
+</div>
