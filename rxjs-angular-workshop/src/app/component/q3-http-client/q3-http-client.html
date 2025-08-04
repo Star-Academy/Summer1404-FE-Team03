@@ -1,0 +1,33 @@
+<div class="user-list-container">
+
+  @if (users.length > 0) {
+    
+    @for (user of users; track user.id) {
+      
+      <div class="user-card">
+        
+        <div class="card-header">
+          <h2>{{ user.name }}</h2>
+          <span>{{'@' +  user.username }}</span>
+        </div>
+        
+        <div class="card-body">
+          <p>
+            <strong>Email:</strong> {{ user.email }}
+          </p>
+          <p>
+            <strong>Phone:</strong> {{ user.phone }}
+          </p>
+          <p>
+            <strong>Website:</strong> <a [href]="'http://' + user.website" target="_blank">{{ user.website }}</a>
+          </p>
+        </div>
+
+      </div>
+    }
+
+  } @else {
+    <p class="loading-message">Loading users...</p>
+  }
+
+</div>
