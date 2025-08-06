@@ -1,0 +1,29 @@
+@for (book of books(); track book.id) {
+  <div class="books-info">
+    <h2>{{ book.name }}</h2>
+    <img [src]="book.image" alt="{{ book.image }}" />
+
+    <div class="book-details">
+      <p>Author: {{ book.author }}</p>
+      <div class="genres">
+        @for (g of book.genre; track g ) {
+          <span class="genre-tag">{{ g }}</span>
+        }
+      </div>
+      <p>Published: {{ book.publishData | date: 'longDate' }}</p>
+      <div class="price-container">
+        <p>Price:</p>
+        <span class="price"> ${{ book.price }}</span>
+      </div>
+
+      <a [routerLink]="['/books', book.id]" class="details-button">View Details</a>
+      
+      <button class="details-button" (click)="onDeleteClick(book.id)">
+        Delete
+      </button>
+
+
+
+    </div>
+  </div>
+}
