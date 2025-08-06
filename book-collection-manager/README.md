@@ -1,59 +1,42 @@
-# BookCollectionManager
+# Book Collection Manager 
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+This project is a web application for managing a book collection, developed as part of the **CodeStar Phase 6** program. This version of the project has been completely refactored using the latest modern Angular tools and patterns, with a special focus on **Angular Signals**.
 
-## Development server
+---
 
-To start a local development server, run:
+## Screenshots
 
-```bash
-ng serve
-```
+Here is a preview of the application's different pages:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+**Main Page (Book List)**
+![Book List View](./screenshots/main-page.png)
 
-## Code scaffolding
+**Book Detail Page**
+![Book Detail View](./screenshots/detail-page.png)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Add/Edit Form**
+![Form View](./screenshots/form-page.png)
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+##  Features & Key Highlights
 
-## Building
+This project was developed with a focus on best practices and the latest Angular features:
 
-To build the project run:
+* **State Management with Signals:** All application state management has been migrated from `RxJS/BehaviorSubject` to **Angular Signals**. This results in more readable code and simpler management of reactive states.
 
-```bash
-ng build
-```
+* **Professional Folder Structure (Feature-Based):** The project is organized by features (`features`) and shared sections (`layout`), making future scalability and code maintenance easier.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+* **Descriptive File Naming:** File and component naming follows the latest Angular standards for clarity and ease of navigation.
 
-## Running unit tests
+* **Full CRUD Functionality:** The application supports all four core operations:
+    * **Create:** Add new books via a reactive form.
+    * **Read:** Display a complete list of books and detailed views for each book.
+    * **Update:** Edit the information of existing books.
+    * **Delete:** Remove books from the collection.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+* **Live Search Feature:** Users can instantly search through book titles to filter the collection in real-time.
 
-```bash
-ng test
-```
+* **Modern Styling with SCSS:** SCSS is used for styling, with a focus on `rem` units for better responsiveness and accessibility.
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
