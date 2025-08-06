@@ -9,13 +9,13 @@ This project is a web application for managing a book collection, developed as p
 Here is a preview of the application's different pages:
 
 **Main Page (Book List)**
-![Book List View](./screenshots/main-page.png)
+![Book List View](./book-collection-manager/screenshots/main-page.png)
 
 **Book Detail Page**
-![Book Detail View](./screenshots/detail-page.png)
+![Book Detail View](./book-collection-manager/screenshots/detail-page.png)
 
 **Add/Edit Form**
-![Form View](./screenshots/form-page.png)
+![Form View](./book-collection-manager/screenshots/form-page.png)
 
 
 ---
